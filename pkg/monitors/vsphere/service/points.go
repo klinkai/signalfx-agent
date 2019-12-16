@@ -67,7 +67,7 @@ func (svc *PointsSvc) RetrievePoints(vsInfo *model.VsphereInfo, numSamplesReqd i
 	return dps, latestSampleTime
 }
 
-// Lookup the cached metric name and metric type that was generated on vSphereInfo load.
+// Lookup the cached metric name and metric type that was generated on VsphereInfo retrieval.
 func lookupCachedMetricData(vsInfo *model.VsphereInfo, intSeries *types.PerfMetricIntSeries) (string, datapoint.MetricType) {
 	metricInfo := vsInfo.PerfCounterIndex[intSeries.Id.CounterId]
 	metricName := metricInfo.MetricName

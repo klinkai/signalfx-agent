@@ -14,7 +14,7 @@ func NewVSphereInfoService(inventorySvc *InventorySvc, metricsSvc *MetricsSvc) *
 	return &VSphereInfoService{inventorySvc: inventorySvc, metricsSvc: metricsSvc}
 }
 
-// Retrieves the inventory and available metrics and metric index.
+// Retrieves the inventory, available metrics, and metric index.
 func (l *VSphereInfoService) RetrieveVSphereInfo() (*model.VsphereInfo, error) {
 	inv, err := l.retrievePopulatedInventory()
 	if err != nil {

@@ -81,23 +81,23 @@ func dotsToUnderscores(in string) string {
 	return dotRegexp.ReplaceAllString(in, "_")
 }
 
-type metricSuffix string
+type units string
 
 const (
-	percent = metricSuffix("percent")
-	ms      = metricSuffix("ms")
-	mhz     = metricSuffix("mhz")
-	kbs     = metricSuffix("kbs") // kilobytes per second
-	kb      = metricSuffix("kb")
-	mb      = metricSuffix("mb")
-	tb      = metricSuffix("tb")
-	joules  = metricSuffix("joules")
-	watts   = metricSuffix("watts")
-	seconds = metricSuffix("seconds")
+	percent = units("percent")
+	ms      = units("ms")
+	mhz     = units("mhz")
+	kbs     = units("kbs") // kilobytes per second
+	kb      = units("kb")
+	mb      = units("mb")
+	tb      = units("tb")
+	joules  = units("joules")
+	watts   = units("watts")
+	seconds = units("seconds")
 )
 
 // Given a group name and vCenter name for the metric, returns the units.
-func getMetricUnits(groupName string, name string) metricSuffix {
+func getMetricUnits(groupName string, name string) units {
 	groupUnits, ok := metricUnits[groupName]
 	if !ok {
 		return ""
@@ -109,7 +109,7 @@ func getMetricUnits(groupName string, name string) metricSuffix {
 	return "_" + suffix
 }
 
-var metricUnits = map[string]map[string]metricSuffix{
+var metricUnits = map[string]map[string]units{
 	"cpu": {
 		"coreUtilization":        percent,
 		"costop":                 ms,

@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestPointsRetrievePoints(t *testing.T) {
+func TestRetrievePoints(t *testing.T) {
 	gateway := newFakeGateway()
 	inventorySvc := NewInventorySvc(gateway)
 	metricsSvc := NewMetricsService(gateway)

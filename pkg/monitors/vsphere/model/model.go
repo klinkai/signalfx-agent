@@ -20,19 +20,17 @@ const (
 	HostType       = "HostSystem"
 )
 
-const objectType = "object_type"
-
 type Config struct {
 	config.MonitorConfig `yaml:",inline" acceptsEndpoints:"true"`
 	Host                 string `yaml:"host"`
 	Port                 uint16 `yaml:"port"`
-	// The vSphere username.
+	// The vSphere username
 	Username string `yaml:"username"`
-	// The vSphere password.
+	// The vSphere password
 	Password string `yaml:"password"`
 	// Whether we verify the server's certificate chain and host name
 	InsecureSkipVerify bool `yaml:"InsecureSkipVerify"`
-	// How often to reload the inventory and inventory metrics.
+	// How often to reload the inventory and inventory metrics
 	InventoryRefreshIntervalSeconds int `yaml:"inventoryRefreshIntervalSeconds"`
 
 	// Path to the ca file
@@ -52,7 +50,6 @@ type InventoryObject struct {
 	Ref        types.ManagedObjectReference
 	MetricIds  []types.PerfMetricId
 	dimensions dimensions
-	invType    string
 }
 
 type Inventory struct {
@@ -63,8 +60,8 @@ type Inventory struct {
 func NewInventoryObject(ref types.ManagedObjectReference, extraDimensions map[string]string) *InventoryObject {
 	log.WithField("ref", ref).Debug("newInventoryObject")
 	dimensions := map[string]string{
-		"ref_id":   ref.Value,
-		objectType: ref.Type,
+		"ref_id":      ref.Value,
+		"object_type": ref.Type,
 	}
 	for key, value := range extraDimensions {
 		dimensions[key] = value
@@ -72,7 +69,6 @@ func NewInventoryObject(ref types.ManagedObjectReference, extraDimensions map[st
 	return &InventoryObject{
 		Ref:        ref,
 		dimensions: dimensions,
-		invType:    ref.Type,
 	}
 }
 

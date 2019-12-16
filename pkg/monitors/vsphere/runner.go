@@ -16,15 +16,15 @@ type runner struct {
 }
 
 func newRunner(ctx context.Context, conf *model.Config, monitor *Monitor) runner {
-	vsphereLoadInterval := model.DefaultVSInfoReloadInterval
+	vsphereReloadInterval := model.DefaultVSInfoReloadInterval
 	if conf.InventoryRefreshIntervalSeconds > 0 {
-		vsphereLoadInterval = conf.InventoryRefreshIntervalSeconds
+		vsphereReloadInterval = conf.InventoryRefreshIntervalSeconds
 	}
 	return runner{
 		ctx:                   ctx,
 		monitor:               monitor,
 		conf:                  conf,
-		vsphereReloadInterval: vsphereLoadInterval,
+		vsphereReloadInterval: vsphereReloadInterval,
 		vsm:                   &vSphereMonitor{},
 	}
 }
