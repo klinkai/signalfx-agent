@@ -20,6 +20,7 @@ const (
 	HostType       = "HostSystem"
 )
 
+// Config for the vSphere monitor
 type Config struct {
 	config.MonitorConfig `yaml:",inline" acceptsEndpoints:"true"`
 	Host                 string `yaml:"host"`
